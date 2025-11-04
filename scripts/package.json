@@ -1,0 +1,19 @@
+{
+  "name": "@next-level-re/scripts",
+  "version": "1.0.0",
+  "description": "Database initialization scripts",
+  "private": true,
+  "scripts": {
+    "init:mongo": "mongosh mongodb://localhost:27017/next_level_real_estate mongo-init.js",
+    "init:qdrant": "ts-node qdrant-init.ts",
+    "init:all": "npm run init:mongo && npm run init:qdrant"
+  },
+  "dependencies": {
+    "@next-level-re/shared": "file:../shared"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.15",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

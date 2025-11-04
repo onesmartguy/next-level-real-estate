@@ -1,0 +1,68 @@
+{
+  "name": "lead-service",
+  "version": "1.0.0",
+  "description": "Lead ingestion and management service for Next Level Real Estate",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "real-estate",
+    "lead-management",
+    "webhooks",
+    "ai"
+  ],
+  "author": "Next Level Real Estate",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2",
+    "kafkajs": "^2.2.4",
+    "dotenv": "^16.4.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "cors": "^2.8.5",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.2.0",
+    "winston": "^3.13.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "@opentelemetry/api": "^1.8.0",
+    "@opentelemetry/sdk-node": "^0.51.1",
+    "@opentelemetry/auto-instrumentations-node": "^0.46.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.51.1",
+    "@opentelemetry/resources": "^1.24.1",
+    "@opentelemetry/semantic-conventions": "^1.24.1",
+    "crypto": "^1.0.1",
+    "axios": "^1.6.8",
+    "libphonenumber-js": "^1.10.60",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "@types/cors": "^2.8.17",
+    "@types/compression": "^1.7.5",
+    "@types/validator": "^13.11.9",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
