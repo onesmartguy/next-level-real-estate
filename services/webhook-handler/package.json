@@ -1,0 +1,13 @@
+{
+  "name": "webhook-handler",
+  "version": "0.1.0",
+  "description": "Webhook handler for Twilio ConversationRelay with ElevenLabs",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "twilio": "^5.3.7"
+  }
+}

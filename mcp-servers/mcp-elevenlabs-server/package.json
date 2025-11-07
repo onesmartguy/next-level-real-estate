@@ -1,0 +1,47 @@
+{
+  "name": "mcp-elevenlabs-server",
+  "version": "0.1.0",
+  "description": "MCP server wrapping ElevenLabs Conversational AI API for Next Level Real Estate",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "mcp-elevenlabs-server": "./dist/server.js"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start": "node dist/server.js",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "mcp",
+    "elevenlabs",
+    "conversational-ai",
+    "text-to-speech",
+    "voice-ai",
+    "real-estate"
+  ],
+  "author": "Next Level Real Estate",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@elevenlabs/elevenlabs-js": "^2.21.0",
+    "dotenv": "^17.2.3",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

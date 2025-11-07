@@ -1,0 +1,30 @@
+{
+  "name": "mcp-twilio-server",
+  "version": "0.1.0",
+  "description": "MCP server for Twilio Voice API integration with ElevenLabs ConversationRelay",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "mcp-twilio-server": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mcp", "twilio", "elevenlabs", "voice", "calling"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "twilio": "^5.3.7",
+    "dotenv": "^17.2.3",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0"
+  }
+}
