@@ -293,14 +293,31 @@ function handleRelayConnection(twilioWs, callSid) {
   // Relay messages from ElevenLabs to Twilio
   elevenlabsWs.on('message', (data) => {
     try {
-      const message = JSON.parse(data);
+      // Try to parse as JSON first (for control messages)
+      let message;
+      let isJson = false;
+      try {
+        message = JSON.parse(data);
+        isJson = true;
+        console.log(`   🎤 ElevenLabs ${message.type || 'message'}:`,
+          message.type === 'user_interruption_frame' ? 'User interrupted' :
+          message.type === 'audio_frame' ? 'Audio frame' :
+          message.type === 'conversation_initiation_metadata' ? 'Conversation metadata' :
+          '');
+      } catch (e) {
+        // Not JSON, treat as binary audio
+        message = data;
+        console.log(`   🎤 ElevenLabs audio: ${Buffer.byteLength(data)} bytes`);
+      }
 
-      console.log(`   Message from ElevenLabs:`, message.type);
-
-      // Convert ElevenLabs message to Twilio format if needed
-      // For now, just forward the message
+      // Relay to Twilio
       if (twilioWs.readyState === WebSocket.OPEN) {
-        twilioWs.send(JSON.stringify(message));
+        if (isJson) {
+          twilioWs.send(JSON.stringify(message));
+        } else {
+          // Send binary audio as-is
+          twilioWs.send(data);
+        }
       }
     } catch (error) {
       console.error(`   Error relaying message:`, error.message);
@@ -327,14 +344,36 @@ function handleRelayConnection(twilioWs, callSid) {
   // Handle messages from Twilio
   twilioWs.on('message', (data) => {
     try {
-      const message = JSON.parse(data);
+      // Try to parse as JSON (Twilio Media Streams sends JSON)
+      let message;
+      try {
+        message = JSON.parse(data);
 
-      // Relay to ElevenLabs if connected
-      if (isConnectedToElevenLabs && elevenlabsWs.readyState === WebSocket.OPEN) {
-        elevenlabsWs.send(JSON.stringify(message));
+        // Log different message types
+        if (message.event === 'start') {
+          console.log(`   📨 Twilio START: Media stream started`);
+        } else if (message.event === 'media') {
+          // Media event contains base64 audio payload
+          console.log(`   📨 Twilio MEDIA: ${Buffer.byteLength(JSON.stringify(message))} bytes, payload ${message.media?.payload ? message.media.payload.substring(0, 20) : 'N/A'}...`);
+        } else if (message.event === 'stop') {
+          console.log(`   📨 Twilio STOP: Media stream stopped`);
+        } else if (message.event === 'mark') {
+          console.log(`   📨 Twilio MARK: ${message.mark?.name || 'unnamed'}`);
+        }
+
+        // Relay to ElevenLabs if connected
+        if (isConnectedToElevenLabs && elevenlabsWs.readyState === WebSocket.OPEN) {
+          elevenlabsWs.send(JSON.stringify(message));
+        }
+      } catch (e) {
+        // If not JSON, it's binary audio (shouldn't happen with Twilio Media Streams)
+        console.log(`   📨 Twilio BINARY: ${Buffer.byteLength(data)} bytes`);
+        if (isConnectedToElevenLabs && elevenlabsWs.readyState === WebSocket.OPEN) {
+          elevenlabsWs.send(data);
+        }
       }
     } catch (error) {
-      console.error(`   Error parsing Twilio message:`, error.message);
+      console.error(`   Error relaying Twilio message:`, error.message);
     }
   });
 
