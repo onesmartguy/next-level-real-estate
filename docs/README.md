@@ -95,7 +95,7 @@ When adding new documentation:
 ## Resources
 
 - [Project CLAUDE.md](../CLAUDE.md) - Main project instructions and context
-- [GitHub Repository](https://github.com/your-org/next-level-real-estate)
+- [GitHub Repository](https://github.com/onesmartguy/next-level-real-estate)
 
 ---
 

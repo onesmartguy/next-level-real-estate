@@ -21,7 +21,7 @@ Next Level Real Estate is a comprehensive AI-powered platform that revolutionize
 
 ```bash
 # Clone repository
-git clone https://github.com/your-org/next-level-real-estate.git
+git clone https://github.com/onesmartguy/next-level-real-estate.git
 cd next-level-real-estate
 
 # Install dependencies
@@ -134,18 +134,20 @@ cd agents/realty && npm run dev
 # All tests
 npm test
 
-# Unit tests only
-npm run test:unit
+# Current test coverage: 9 test files
+# Tests exist for:
+#   - TCPA validator (calling-service)
+#   - Basic service health checks
+#   - (More tests in development)
 
-# Integration tests
-npm run test:integration
-
-# E2E tests
-npm run test:e2e
-
-# With coverage
+# With coverage (when fully implemented)
 npm test -- --coverage
 ```
+
+**Future**: Comprehensive test suite planned
+- Unit tests for all services
+- Integration tests for workflows
+- E2E tests for complete flows
 
 ### Linting & Formatting
 
@@ -229,8 +231,8 @@ Proprietary - All rights reserved
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-org/next-level-real-estate/issues)
-- **Contact**: support@nextlevelre.com
+- **Issues**: [GitHub Issues](https://github.com/onesmartguy/next-level-real-estate/issues)
+- **Contact**: For questions or support, please open an issue on GitHub
 
 ## Acknowledgments
 
