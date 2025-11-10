@@ -1,0 +1,68 @@
+# Local Development Configuration
+# Copy this file to terraform.tfvars and fill in your actual values
+# terraform.tfvars is gitignored
+
+# ==============================================================================
+# REQUIRED: AI Services
+# ==============================================================================
+
+anthropic_api_key  = "sk-ant-api03-..."  # Get from: https://console.anthropic.com/settings/keys
+openai_api_key     = "sk-..."             # Get from: https://platform.openai.com/api-keys
+
+# ==============================================================================
+# OPTIONAL: Communication Services
+# ==============================================================================
+
+# ElevenLabs (for voice calling)
+# elevenlabs_api_key = ""  # Get from: https://elevenlabs.io/app/settings/api-keys
+
+# Twilio (for phone calls)
+# twilio_account_sid  = "AC..."
+# twilio_auth_token   = ""
+# twilio_phone_number = "+15551234567"
+
+# ==============================================================================
+# OPTIONAL: Email Service
+# ==============================================================================
+
+# ProtonMail (via Bridge)
+# protonmail_email        = "yourbusiness@proton.me"
+# protonmail_app_password = ""  # Get from Proton Bridge
+# from_name               = "Next Level Real Estate"
+# from_email              = "noreply@yourbusiness.proton.me"
+
+# ==============================================================================
+# OPTIONAL: Lead Sources
+# ==============================================================================
+
+# Google Ads
+# google_ads_client_id       = ""
+# google_ads_client_secret   = ""
+# google_ads_developer_token = ""
+# google_ads_refresh_token   = ""
+# google_ads_customer_id     = ""
+
+# Zillow
+# zillow_api_key        = ""
+# zillow_webhook_secret = ""
+
+# RealGeeks
+# realgeeks_api_username = ""
+# realgeeks_api_password = ""
+
+# ==============================================================================
+# OPTIONAL: Security (Auto-generated if not provided)
+# ==============================================================================
+
+# Leave empty to auto-generate secure random values
+# jwt_secret   = ""
+# api_key_salt = ""
+
+# ==============================================================================
+# Database URLs (defaults work with Docker Compose)
+# ==============================================================================
+
+# mongodb_uri   = "mongodb://localhost:27017/next_level_real_estate"
+# qdrant_url    = "http://localhost:6333"
+# redis_url     = "redis://localhost:6379"
+# kafka_brokers = "localhost:9092"
