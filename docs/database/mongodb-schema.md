@@ -21,7 +21,7 @@ next_level_real_estate (Database)
 ├── call_transcripts (Collection)
 ├── consent_logs (Collection)
 ├── dnc_registry (Collection)
-├── agent_state (Collection)
+├── agent_states (Collection)
 ├── knowledge_base (Collection)
 ├── analytics_events (Collection)
 └── system_config (Collection)
@@ -724,7 +724,7 @@ db.consent_logs.createIndex({ phone: 1, timestamp: -1 });
 db.consent_logs.createIndex({ eventType: 1, timestamp: -1 });
 ```
 
-### 7. agent_state Collection
+### 7. agent_states Collection
 
 **Purpose**: Store AI agent state, decision history, and performance metrics.
 
@@ -801,9 +801,9 @@ db.consent_logs.createIndex({ eventType: 1, timestamp: -1 });
 
 **Indexes**:
 ```javascript
-db.agent_state.createIndex({ agentType: 1, agentId: 1 }, { unique: true });
-db.agent_state.createIndex({ "metrics.avgResponseTime": 1 });
-db.agent_state.createIndex({ updatedAt: -1 });
+db.agent_states.createIndex({ agentType: 1, agentId: 1 }, { unique: true });
+db.agent_states.createIndex({ "metrics.avgResponseTime": 1 });
+db.agent_states.createIndex({ updatedAt: -1 });
 ```
 
 ## Aggregation Pipelines

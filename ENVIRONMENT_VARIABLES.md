@@ -116,7 +116,9 @@ API_KEY_SALT=your_api_key_salt
 # OBSERVABILITY
 # ============================================
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
-SIGNON_URL=http://localhost:3301
+
+# Optional (Not Currently Integrated)
+# SIGNON_URL=http://localhost:3301
 
 # ============================================
 # ENVIRONMENT
@@ -190,7 +192,9 @@ REALGEEKS_API_PASSWORD=your_realgeeks_password
 # TCPA Compliance
 ENABLE_TCPA_VALIDATION=true
 REQUIRE_WRITTEN_CONSENT=true
-DNC_REGISTRY_API_KEY=your_dnc_registry_api_key
+
+# Optional APIs (Not Currently Integrated)
+# DNC_REGISTRY_API_KEY=your_dnc_registry_api_key
 
 # Deduplication
 DUPLICATE_CHECK_WINDOW_DAYS=30
@@ -235,12 +239,13 @@ ANTHROPIC_API_KEY=your_anthropic_api_key_here
 LEAD_SERVICE_URL=http://localhost:3001
 ANALYTICS_SERVICE_URL=http://localhost:3003
 
-# Property Data APIs (optional, using mock data if not provided)
-ZILLOW_API_KEY=
-ATTOM_API_KEY=
+# Optional APIs (Not Currently Integrated)
+# Property Data APIs (using mock data if not provided)
+# ZILLOW_API_KEY=
+# ATTOM_API_KEY=
 
-# DNC Registry API (optional, using mock checks if not provided)
-DNC_API_KEY=
+# DNC Registry API (using mock checks if not provided)
+# DNC_API_KEY=
 
 # TCPA Compliance
 ENABLE_TCPA_VALIDATION=true
