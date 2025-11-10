@@ -32,8 +32,15 @@ db.createCollection('properties');
 db.createCollection('calls');
 db.createCollection('campaigns');
 db.createCollection('agent_states');
+db.createCollection('contacts');
+db.createCollection('call_transcripts');
+db.createCollection('consent_logs');
+db.createCollection('dnc_registry');
+db.createCollection('knowledge_base');
+db.createCollection('analytics_events');
+db.createCollection('system_config');
 
-print('Collections created successfully');
+print('Collections created successfully (12 collections)');
 
 print('Creating indexes for leads collection...');
 db.leads.createIndex({ leadId: 1 }, { unique: true });
@@ -85,7 +92,50 @@ db.agent_states.createIndex({ status: 1 });
 db.agent_states.createIndex({ lastHeartbeat: 1 });
 db.agent_states.createIndex({ 'performance.lastUpdated': -1 });
 
-print('Indexes created successfully');
+print('Creating indexes for contacts collection...');
+db.contacts.createIndex({ email: 1 }, { unique: true, sparse: true });
+db.contacts.createIndex({ phone: 1 });
+db.contacts.createIndex({ leadId: 1 });
+db.contacts.createIndex({ createdAt: -1 });
+
+print('Creating indexes for call_transcripts collection...');
+db.call_transcripts.createIndex({ callId: 1 });
+db.call_transcripts.createIndex({ leadId: 1 });
+db.call_transcripts.createIndex({ createdAt: -1 });
+db.call_transcripts.createIndex({ 'sentiment.overall': 1 });
+
+print('Creating indexes for consent_logs collection (TCPA compliance)...');
+db.consent_logs.createIndex({ leadId: 1 });
+db.consent_logs.createIndex({ phone: 1 });
+db.consent_logs.createIndex({ email: 1 });
+db.consent_logs.createIndex({ createdAt: -1 });
+db.consent_logs.createIndex({ consentType: 1, createdAt: -1 });
+db.consent_logs.createIndex({ hasConsent: 1, expiresAt: 1 });
+
+print('Creating indexes for dnc_registry collection...');
+db.dnc_registry.createIndex({ phone: 1 }, { unique: true });
+db.dnc_registry.createIndex({ lastChecked: 1 });
+db.dnc_registry.createIndex({ source: 1 });
+
+print('Creating indexes for knowledge_base collection...');
+db.knowledge_base.createIndex({ agentType: 1 });
+db.knowledge_base.createIndex({ category: 1 });
+db.knowledge_base.createIndex({ vectorId: 1 }); // Link to Qdrant
+db.knowledge_base.createIndex({ tags: 1 });
+db.knowledge_base.createIndex({ createdAt: -1 });
+db.knowledge_base.createIndex({ 'performance.successRate': -1 });
+
+print('Creating indexes for analytics_events collection...');
+db.analytics_events.createIndex({ eventType: 1 });
+db.analytics_events.createIndex({ timestamp: -1 });
+db.analytics_events.createIndex({ entityId: 1, entityType: 1 });
+db.analytics_events.createIndex({ agentType: 1, timestamp: -1 });
+
+print('Creating indexes for system_config collection...');
+db.system_config.createIndex({ key: 1 }, { unique: true });
+db.system_config.createIndex({ category: 1 });
+
+print('All indexes created successfully (12 collections with indexes)');
 
 // Create initial agent states
 print('Creating initial agent states...');
@@ -273,5 +323,8 @@ agents.forEach((agent) => {
 
 print('\nMongoDB initialization completed successfully!');
 print('Database: ' + dbName);
-print('Collections: leads, properties, calls, campaigns, agent_states');
+print('Collections (12):');
+print('  - leads, properties, calls, campaigns, agent_states');
+print('  - contacts, call_transcripts, consent_logs');
+print('  - dnc_registry, knowledge_base, analytics_events, system_config');
 print('Agents initialized: ' + agents.length);

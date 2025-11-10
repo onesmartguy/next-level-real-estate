@@ -1,0 +1,93 @@
+# Production Environment Configuration
+# Copy this file to terraform.tfvars and fill in your actual values
+# terraform.tfvars is gitignored and should NEVER be committed
+
+# ==============================================================================
+# AWS Configuration
+# ==============================================================================
+
+aws_region = "us-west-2"
+
+# AWS Secrets Manager
+use_aws_secrets_manager = true
+
+# External Secrets Operator (sync AWS secrets to Kubernetes)
+use_external_secrets_operator = true
+external_secrets_role_arn     = "arn:aws:iam::ACCOUNT_ID:role/external-secrets-role"
+
+# Secret Rotation (recommended for production)
+enable_secret_rotation = true
+rotation_lambda_arn    = "arn:aws:lambda:us-west-2:ACCOUNT_ID:function:secret-rotation"
+
+# ==============================================================================
+# Kubernetes Configuration
+# ==============================================================================
+
+kube_context         = "arn:aws:eks:us-west-2:ACCOUNT_ID:cluster/nlre-production"
+kubernetes_namespace = "nlre"
+
+# ==============================================================================
+# Database Configuration (Production MongoDB Atlas, etc.)
+# ==============================================================================
+
+mongodb_uri   = "mongodb+srv://user:pass@production-cluster.mongodb.net/nlre?retryWrites=true&w=majority"
+qdrant_url    = "https://qdrant-production.example.com:6333"
+redis_url     = "rediss://redis-production.cache.amazonaws.com:6379"
+kafka_brokers = "kafka-1.prod:9092,kafka-2.prod:9092,kafka-3.prod:9092"
+
+# ==============================================================================
+# Observability
+# ==============================================================================
+
+otel_endpoint = "https://otel-collector.prod:4317"
+
+# ==============================================================================
+# REQUIRED: AI Services
+# ==============================================================================
+
+anthropic_api_key  = "sk-ant-api03-..."
+openai_api_key     = "sk-..."
+elevenlabs_api_key = ""
+
+# ==============================================================================
+# REQUIRED: Communication Services
+# ==============================================================================
+
+twilio_account_sid  = "AC..."
+twilio_auth_token   = ""
+twilio_phone_number = "+15551234567"
+
+# ==============================================================================
+# REQUIRED: Email Service
+# ==============================================================================
+
+protonmail_email        = "business@proton.me"
+protonmail_app_password = ""
+from_name               = "Next Level Real Estate"
+from_email              = "noreply@nextlevelre.com"
+
+# ==============================================================================
+# OPTIONAL: Lead Sources
+# ==============================================================================
+
+google_ads_client_id       = ""
+google_ads_client_secret   = ""
+google_ads_developer_token = ""
+google_ads_refresh_token   = ""
+google_ads_customer_id     = ""
+
+zillow_api_key        = ""
+zillow_webhook_secret = ""
+
+realgeeks_api_username = ""
+realgeeks_api_password = ""
+
+# ==============================================================================
+# Security (Must provide for production)
+# ==============================================================================
+
+# Generate with: openssl rand -base64 64
+jwt_secret   = ""
+
+# Generate with: openssl rand -base64 32
+api_key_salt = ""

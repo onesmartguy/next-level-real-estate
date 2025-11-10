@@ -2,10 +2,9 @@
 
 > AI-powered real estate wholesale platform with multi-agent intelligence
 
-[![CI/CD](https://github.com/your-org/next-level-real-estate/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/next-level-real-estate/actions)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.7+-blue.svg)](https://www.typescriptlang.org/)
 
 ## Overview
 
@@ -22,7 +21,7 @@ Next Level Real Estate is a comprehensive AI-powered platform that revolutionize
 
 ```bash
 # Clone repository
-git clone https://github.com/your-org/next-level-real-estate.git
+git clone https://github.com/onesmartguy/next-level-real-estate.git
 cd next-level-real-estate
 
 # Install dependencies
@@ -135,18 +134,20 @@ cd agents/realty && npm run dev
 # All tests
 npm test
 
-# Unit tests only
-npm run test:unit
+# Current test coverage: 9 test files
+# Tests exist for:
+#   - TCPA validator (calling-service)
+#   - Basic service health checks
+#   - (More tests in development)
 
-# Integration tests
-npm run test:integration
-
-# E2E tests
-npm run test:e2e
-
-# With coverage
+# With coverage (when fully implemented)
 npm test -- --coverage
 ```
+
+**Future**: Comprehensive test suite planned
+- Unit tests for all services
+- Integration tests for workflows
+- E2E tests for complete flows
 
 ### Linting & Formatting
 
@@ -230,8 +231,8 @@ Proprietary - All rights reserved
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-org/next-level-real-estate/issues)
-- **Contact**: support@nextlevelre.com
+- **Issues**: [GitHub Issues](https://github.com/onesmartguy/next-level-real-estate/issues)
+- **Contact**: For questions or support, please open an issue on GitHub
 
 ## Acknowledgments
 
@@ -242,7 +243,14 @@ Proprietary - All rights reserved
 
 ---
 
-**Status**: ✅ Production Ready (Stages 1 & 3 Complete)
-**Next**: Stage 2 - AI Calling System Integration
-**Version**: 1.0.0
-**Last Updated**: October 24, 2025
+**Status**: 🚧 Alpha Development (Core Infrastructure Complete)
+
+**Infrastructure**: ✅ MongoDB, Redis, Kafka, Qdrant operational
+**Services**: ✅ API Gateway, Lead Service implemented | 🟡 Calling Service (code complete, testing needed)
+**AI Agents**: 🟡 Code complete, validation pending
+**Testing**: 🔴 Limited (9 test files)
+**Multi-Tenancy**: 📋 Designed only, not implemented
+
+**Next Steps**: Integration testing, MCP server validation, Email service implementation
+**Version**: 1.0.0-alpha
+**Last Updated**: November 10, 2025

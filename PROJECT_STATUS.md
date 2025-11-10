@@ -292,9 +292,13 @@ next-level-real-estate/
    - TCPA Checker MCP
    - Calling MCP
 5. ⏳ **Build Calling Service** with Claude Agent SDK
-6. ⏳ **Build Admin Dashboard** (Next.js)
-   - Call initiation form
-   - Aspire-style monitoring
+6. 🟡 **Admin Dashboard** (Next.js)
+   - ✅ UI scaffolded with 20+ components
+   - ✅ Dashboard pages (analytics, leads, settings, tenants)
+   - ✅ Tailwind CSS v4 configured
+   - ⏳ API integration pending
+   - ⏳ Authentication setup needed
+   - ⏳ Real-time data connections needed
 7. ⏳ **Test end-to-end** AI calling flow
 
 ### Phase 2: ElevenLabs + Twilio Integration
@@ -325,14 +329,22 @@ next-level-real-estate/
 
 ### Projected Costs (Production)
 
-**AI Calls** (with Claude Agent SDK + prompt caching):
-- Claude API: ~$0.08 per 5-minute call
+**AI Calls** (ESTIMATED - with Claude Agent SDK + prompt caching):
+- Claude API: ~$0.08 per 5-minute call (estimated)
   - Input: 10,000 tokens cached @ $0.30/1M = $0.003
   - Output: 2,000 tokens @ $15/1M = $0.03
-  - Total: **$0.033/call**
-- ElevenLabs: ~$0.10 per 5-minute call
+  - Total: **~$0.033/call** (vs. ~$0.46 without caching)
+- ElevenLabs: ~$0.10 per 5-minute call (estimated)
 - Twilio: ~$0.01 per minute = $0.05 per 5-minute call
-- **Total: ~$0.18 per call** (vs. $0.46 without caching)
+- **Total: ~$0.18 per call** (estimated)
+
+**Note**: These are ESTIMATES based on:
+- Assumed 90% cache hit rate (not yet measured in production)
+- Standard Claude 3.5 Sonnet pricing (as of Nov 2025)
+- Estimated token usage per 5-minute call
+- Prompt caching enabled (implementation validated, production metrics pending)
+
+Actual costs may vary significantly based on conversation length, complexity, and cache hit rates. Production measurements needed for accurate pricing.
 
 **Infrastructure** (AWS estimates):
 - **Serverless Option**: $200-500/month (1,000 calls/day)
