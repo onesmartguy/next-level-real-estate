@@ -27,9 +27,12 @@ Client Request
       ↓
   Proxy to Microservices:
   ├─ Lead Service (Port 3001)
-  ├─ Campaign Service (Port 3002)
-  ├─ Call Service (Port 3003)
-  └─ Analytics Service (Port 3004)
+  ├─ Calling Service (Port 3002)
+  └─ Email Service (Port 3003)
+
+  Future Services (Not Yet Implemented):
+  ├─ Analytics Service (Planned)
+  └─ Campaign Service (Planned)
 ```
 
 ## Prerequisites
@@ -140,10 +143,14 @@ docker run -p 3000:3000 --env-file .env next-level-real-estate/api-gateway:lates
 
 All API routes require authentication unless specified.
 
+**Implemented Routes**:
 - `GET|POST|PUT|PATCH|DELETE /api/v1/leads/*` - Lead management (proxied to Lead Service)
-- `GET|POST|PUT|PATCH|DELETE /api/v1/campaigns/*` - Campaign management (proxied to Campaign Service)
-- `GET|POST|PUT|PATCH|DELETE /api/v1/calls/*` - Call history (proxied to Call Service)
-- `GET /api/v1/analytics/*` - Analytics (proxied to Analytics Service)
+- `GET|POST|PUT|PATCH|DELETE /api/v1/calls/*` - Call management (proxied to Calling Service)
+- `POST /api/v1/emails/*` - Email operations (proxied to Email Service)
+
+**Planned Routes** (Not Yet Available):
+- `GET|POST|PUT|PATCH|DELETE /api/v1/campaigns/*` - Campaign management (future)
+- `GET /api/v1/analytics/*` - Analytics (future)
 
 ### Authentication
 

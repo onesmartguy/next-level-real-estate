@@ -162,6 +162,69 @@ services:
       - ./services/lead-service:/app
       - /app/node_modules
 
+  calling-service:
+    build:
+      context: .
+      dockerfile: services/calling-service/Dockerfile
+    container_name: nlre-calling-service
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongodb:27017/next_level_real_estate
+      - KAFKA_BROKERS=kafka:29092
+      - REDIS_URL=redis://redis:6379
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PHONE_NUMBER=${TWILIO_PHONE_NUMBER}
+      - LEAD_SERVICE_URL=http://lead-service:3001
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nlre-network
+    volumes:
+      - ./services/calling-service:/app
+      - /app/node_modules
+
+  email-service:
+    build:
+      context: .
+      dockerfile: services/email-service/Dockerfile
+    container_name: nlre-email-service
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+      - MONGODB_URI=mongodb://mongodb:27017/next_level_real_estate
+      - KAFKA_BROKERS=kafka:29092
+      - PROTONMAIL_EMAIL=${PROTONMAIL_EMAIL}
+      - PROTONMAIL_APP_PASSWORD=${PROTONMAIL_APP_PASSWORD}
+      - FROM_NAME=${FROM_NAME}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - LEAD_SERVICE_URL=http://lead-service:3001
+      - CALLING_SERVICE_URL=http://calling-service:3002
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - nlre-network
+    volumes:
+      - ./services/email-service:/app
+      - /app/node_modules
+
 volumes:
   mongodb_data:
   qdrant_data:
